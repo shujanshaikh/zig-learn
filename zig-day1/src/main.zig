@@ -13,8 +13,10 @@ fn read_file(allocator : std.mem.Allocator , path : []const u8) ![]u8 {
     const nbytes = try reader.read(
         file_buffer[0..]
     );
+
     return file_buffer[0..nbytes];
 }
+
 
 pub fn main() !void {
   var arg = std.heap.GeneralPurposeAllocator(.{}){};

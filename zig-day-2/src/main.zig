@@ -7,6 +7,7 @@ const stdout = &stdout_writer.interface;
 pub fn main () !void {
     try if_else_statemnet();
     try switch_statement();
+    try panic_and_range();
     try stdout.flush();
 }
 
@@ -42,4 +43,18 @@ fn switch_statement() !void {
     }
     try stdout.print("{s}\n", .{area});
    // try stdout.flush();
+}
+
+// Panic and range
+fn panic_and_range () !void {
+    const level : u8 = 4;
+    const category = switch (level) {
+        0...25 => "beginner",
+        26...75 => "intermediary",
+        76...100 => "professional",
+        else => {
+            @panic("Unsupported argument");
+        }
+    };
+   try stdout.print("{s}\n", .{category});
 }
